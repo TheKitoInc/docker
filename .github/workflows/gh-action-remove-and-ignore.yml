@@ -1,0 +1,16 @@
+name: GH-ACTION-BUILD
+on: push
+
+jobs:
+  GH-ACTION-BUILD:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run bash script
+        run: |
+          echo "Running bash script..."
+          chmod +x ./scripts/build.sh
+          ./scripts/build.sh
+          echo "Bash script completed."
