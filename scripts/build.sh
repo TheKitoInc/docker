@@ -1,0 +1,58 @@
+#!/bin/env bash
+
+# Search all dockerfiles in the current respository and build them
+
+# Check if Docker is installed
+if ! command -v docker &> /dev/null; then
+    echo "Error: Docker is not installed."
+    exit 1
+fi
+
+# Check if git is installed
+if ! command -v git &> /dev/null; then
+    echo "Error: Git is not installed."
+    exit 1
+fi
+
+# Get Git root
+GIT_ROOT=$(git rev-parse --show-toplevel)
+if [ $? -ne 0 ]; then
+    echo "Error: Not a git repository."
+    exit 1
+fi
+
+cd "$GIT_ROOT" || {
+    echo "Error: Failed to change directory to $GIT_ROOT."
+    exit 1
+}
+
+# Check if the script is run from a git repository
+if [ ! -d ".git" ]; then
+    echo "Error: This script must be run from a git repository."
+    exit 1
+fi
+
+# Find all Dockerfiles in the repository and build them using the path as the image name
+# The script will search for Dockerfiles in the current directory and all subdirectories
+find "$GIT_ROOT" -type f -iname 'Dockerfile' | while read -r dockerfile; do
+    # Get the directory of the Dockerfile
+    DOCKERFILE_DIR=$(dirname "$dockerfile")
+
+    # Get the name of the Dockerfile
+    DOCKERFILE_NAME=$(basename "$dockerfile")
+
+    # Get the name based from path in the repository
+    IMAGE_NAME=$(echo "$DOCKERFILE_DIR" | sed -e "s|$GIT_ROOT/||" -e 's|/|-|g' -e 's|_|-|g')
+
+    # Build the image
+    echo "Building image $IMAGE_NAME from $DOCKERFILE_DIR/$DOCKERFILE_NAME"
+    docker build -t "$IMAGE_NAME" "$DOCKERFILE_DIR"
+
+    # Check if the build was successful
+    if [ $? -ne 0 ]; then
+        echo "Error: Docker build failed."
+        exit 1
+    fi
+done
+
+echo "All Docker images built successfully."
