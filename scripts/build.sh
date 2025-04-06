@@ -90,10 +90,9 @@ find "$GIT_ROOT" -type f -iname 'Dockerfile'  | sort | while read -r dockerfile;
         exit 1
     fi
 
-export
-continue
+
     # Push the image to Docker Hub
-    docker push $IMAGE_NAME:latest
+    docker push $DOCKERHUB_USERNAME/$IMAGE_NAME:latest
 
     if [ $? -ne 0 ]; then
         echo "Error: Docker push failed."
