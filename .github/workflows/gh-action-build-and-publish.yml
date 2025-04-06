@@ -1,4 +1,4 @@
-name: GH-ACTION-BUILD
+name: GH-ACTION-BUILD-AND-PUBLISH
 on: push
 
 jobs:
