@@ -1,4 +1,4 @@
-FROM kito-debian:latest
+FROM thekitoinc/kito-debian:latest
 
 # Set environment variables
 ARG DEBIAN_FRONTEND=noninteractive
