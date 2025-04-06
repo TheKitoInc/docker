@@ -46,6 +46,24 @@ find "$GIT_ROOT" -type f -iname 'Dockerfile' | while read -r dockerfile; do
     # Get the name based from path in the repository
     IMAGE_NAME=$(echo "$DOCKERFILE_DIR" | sed -e "s|$GIT_ROOT/||" -e 's|/|-|g' -e 's|_|-|g')
 
+    # Check if the Dockerfile exists
+    if [ ! -f "$dockerfile" ]; then
+        echo "Error: Dockerfile $dockerfile does not exist."
+        exit 1
+    fi
+
+    # Check if the Dockerfile is empty 
+    if [ ! -s "$dockerfile" ]; then
+        echo "Error: Dockerfile $dockerfile is empty."
+        exit 1
+    fi
+
+    # Check if the Dockerfile is valid
+    if ! grep -q 'FROM' "$dockerfile"; then
+        echo "Error: Dockerfile $dockerfile is not valid."
+        exit 1
+    fi
+
     # Build the image
     echo "Building image $IMAGE_NAME from $DOCKERFILE_DIR/$DOCKERFILE_NAME"
     docker build -t "$IMAGE_NAME" "$DOCKERFILE_DIR"
