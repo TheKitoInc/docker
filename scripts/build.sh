@@ -54,6 +54,22 @@ find "$GIT_ROOT" -type f -iname 'Dockerfile' | while read -r dockerfile; do
         exit 1
     fi
 
+    # Push the image to Docker Hub
+    echo "Pushing image $IMAGE_NAME to Docker Hub"
+
+    # Check if the image exists
+    if ! docker images | grep -q "$IMAGE_NAME"; then
+        echo "Error: Docker image $IMAGE_NAME does not exist."
+        exit 1
+    fi
+
+    # Check if the image is tagged
+    if ! docker images | grep -q "$IMAGE_NAME" | grep -q "latest"; then
+        echo "Error: Docker image $IMAGE_NAME is not tagged with latest."
+        exit 1
+    fi
+
+     
     docker push $IMAGE_NAME:latest
 
     if [ $? -ne 0 ]; then
