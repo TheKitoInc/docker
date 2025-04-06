@@ -15,6 +15,8 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Run bash script
+        env:
+          DOCKERHUB_USERNAME: ${{ vars.DOCKERHUB_USERNAME }}      
         run: |
           echo "Running bash script..."
           chmod +x ./scripts/build.sh
