@@ -71,6 +71,7 @@ find "$GIT_ROOT" -type f -iname 'Dockerfile' | while read -r dockerfile; do
     fi
 
      
+continue
     docker push $IMAGE_NAME:latest
 
     if [ $? -ne 0 ]; then
