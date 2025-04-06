@@ -53,6 +53,13 @@ find "$GIT_ROOT" -type f -iname 'Dockerfile' | while read -r dockerfile; do
         echo "Error: Docker build failed."
         exit 1
     fi
+
+    docker push $IMAGE_NAME:latest
+
+    if [ $? -ne 0 ]; then
+        echo "Error: Docker push failed."
+        exit 1
+    fi
 done
 
 echo "All Docker images built successfully."
