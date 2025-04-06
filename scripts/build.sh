@@ -90,7 +90,8 @@ find "$GIT_ROOT" -type f -iname 'Dockerfile' | while read -r dockerfile; do
         exit 1
     fi
 
-     
+
+export
 continue
     docker push $IMAGE_NAME:latest
 
@@ -100,4 +101,3 @@ continue
     fi
 done
 
-echo "All Docker images built successfully."
