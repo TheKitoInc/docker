@@ -67,7 +67,7 @@ find "$GIT_ROOT" -type f -iname 'Dockerfile'  | sort | while read -r dockerfile;
     # Build the image
     echo "Building image $IMAGE_NAME from $DOCKERFILE_DIR/$DOCKERFILE_NAME"
 
-    docker build -t "$IMAGE_NAME" "$DOCKERFILE_DIR"
+    docker build -t "$DOCKERHUB_USERNAME/$IMAGE_NAME" "$DOCKERFILE_DIR"
 
     # Check if the build was successful
     if [ $? -ne 0 ]; then
