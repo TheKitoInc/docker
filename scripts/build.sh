@@ -21,6 +21,7 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
+# Change to the Git root directory
 cd "$GIT_ROOT" || {
     echo "Error: Failed to change directory to $GIT_ROOT."
     exit 1
@@ -64,7 +65,7 @@ find "$GIT_ROOT" -type f -iname 'Dockerfile' | while read -r dockerfile; do
     fi
 
     # Check if the image is tagged
-    if ! docker images | grep -q "$IMAGE_NAME" | grep -q "latest"; then
+    if ! docker images | grep "$IMAGE_NAME" | grep -q "latest"; then
         echo "Error: Docker image $IMAGE_NAME is not tagged with latest."
         exit 1
     fi
