@@ -36,6 +36,7 @@ fi
 # Find all Dockerfiles in the repository and build them using the path as the image name
 # The script will search for Dockerfiles in the current directory and all subdirectories
 find "$GIT_ROOT" -type f -iname 'Dockerfile' | while read -r dockerfile; do
+
     # Get the directory of the Dockerfile
     DOCKERFILE_DIR=$(dirname "$dockerfile")
 
