@@ -48,6 +48,7 @@ jobs:
           done
 
       - name: Log in to Docker Hub
+        if: steps.detect.outputs.changed_dirs != ''
         uses: docker/login-action@v3
         with:
           username: ${{ vars.DOCKERHUB_USERNAME }}
