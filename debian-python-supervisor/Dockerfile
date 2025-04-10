@@ -1,4 +1,4 @@
-FROM kito-debian:latest
+FROM thekitoinc/debian-python:latest
 
 ARG DEBIAN_FRONTEND=noninteractive
 
