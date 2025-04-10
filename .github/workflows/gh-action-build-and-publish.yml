@@ -29,7 +29,7 @@ jobs:
             sort -u | \
             while read dir; do
               if [ -f "$dir/Dockerfile" ]; then
-                echo $dir
+                echo -n $dir
               fi
             done)
 
