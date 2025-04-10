@@ -29,6 +29,5 @@ RUN echo "apt-get autoclean -y && \\" >> /usr/local/bin/upgrade
 RUN echo "exit 0" >> /usr/local/bin/upgrade
 RUN chmod +x /usr/local/bin/upgrade
 
-
 # Run upgrade
 RUN upgrade
