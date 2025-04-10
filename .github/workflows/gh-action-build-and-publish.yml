@@ -30,6 +30,7 @@ jobs:
             while read dir; do
               if [ -f "$dir/Dockerfile" ]; then
                 echo -n $dir
+                echo -n " "
               fi
             done)
 
