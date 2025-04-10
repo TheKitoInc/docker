@@ -91,6 +91,5 @@ RUN echo "        include /etc/nginx/services/http/http_to_https_redirect.conf;"
 RUN echo "        include /etc/nginx/services/http/teapot.conf;" >> /etc/nginx/services/http.conf
 RUN echo "}" >> /etc/nginx/services/http.conf
 
-
 # Run nginx service
 ENTRYPOINT  ["nginx", "-g", "daemon off;"]
