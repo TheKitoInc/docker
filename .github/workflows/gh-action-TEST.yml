@@ -5,8 +5,10 @@ jobs:
   GH-ACTION-TEST:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # Full history for accurate git diff
 
       - name: Find changed Dockerfile directories
         id: detect
