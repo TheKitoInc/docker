@@ -14,11 +14,20 @@ jobs:
         id: detect
         run: |
           echo "Finding changed services..."
+
+          # Ensure we have the base to compare
+          BASE=${{ github.event.before }}
+          if [ -z "$BASE" ]; then
+            echo "No previous commit; falling back to origin/main"
+            BASE="origin/main"
+            git fetch origin main
+          fi
+
           # Get list of changed folders containing a Dockerfile
-          CHANGED_DIRS=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | \
               awk -F/ '{print $1}' | \
               sort -u | \
               while read dir; do
+          CHANGED_DIRS=$(git diff --name-only $BASE ${{ github.sha }} | \
               if [ -f "$dir/Dockerfile" ]; then
                   echo $dir
               fi
