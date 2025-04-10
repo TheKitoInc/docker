@@ -24,14 +24,14 @@ jobs:
           fi
 
           # Get list of changed folders containing a Dockerfile
-              awk -F/ '{print $1}' | \
-              sort -u | \
-              while read dir; do
           CHANGED_DIRS=$(git diff --name-only $BASE ${{ github.sha }} | \
+            awk -F/ '{print $1}' | \
+            sort -u | \
+            while read dir; do
               if [ -f "$dir/Dockerfile" ]; then
-                  echo $dir
+                echo $dir
               fi
-              done)
+            done)
 
           echo "changed_dirs=$CHANGED_DIRS" >> $GITHUB_OUTPUT
 
