@@ -1,0 +1,29 @@
+name: GH-ACTION-TEST
+on: push
+
+jobs:
+  GH-ACTION-TEST:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Find changed Dockerfile directories
+        id: detect
+        run: |
+          echo "Finding changed services..."
+          # Get list of changed folders containing a Dockerfile
+          CHANGED_DIRS=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | \
+              awk -F/ '{print $1}' | \
+              sort -u | \
+              while read dir; do
+              if [ -f "$dir/Dockerfile" ]; then
+                  echo $dir
+              fi
+              done)
+
+          echo "changed_dirs=$CHANGED_DIRS" >> $GITHUB_OUTPUT
+
+      - name: Show changed services
+        run: |
+          echo "Changed services: ${{ steps.detect.outputs.changed_dirs }}"
