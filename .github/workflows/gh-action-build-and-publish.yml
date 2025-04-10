@@ -1,8 +1,8 @@
-name: GH-ACTION-TEST
+name: GH-ACTION-BUILD-AND-PUBLISH
 on: push
 
 jobs:
-  GH-ACTION-TEST:
+  GH-ACTION-BUILD-AND-PUBLISH:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
