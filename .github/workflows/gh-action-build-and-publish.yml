@@ -33,6 +33,7 @@ jobs:
               fi
             done)
 
+          echo "changed_dirs=$CHANGED_DIRS"            
           echo "changed_dirs=$CHANGED_DIRS" >> $GITHUB_OUTPUT
 
       - name: Show changed services
