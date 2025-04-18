@@ -75,18 +75,7 @@ RUN a2ensite http.conf
 # Add HTTPS site config
 RUN echo '<IfModule mod_ssl.c>' > /etc/apache2/sites-available/https.conf
 RUN echo '  <VirtualHost _default_:443>' >> /etc/apache2/sites-available/https.conf
-RUN echo '    ServerAdmin webmaster@localhost' >> /etc/apache2/sites-available/https.conf
-RUN echo '    DocumentRoot /var/www/public' >> /etc/apache2/sites-available/https.conf
-RUN echo '    SSLEngine on' >> /etc/apache2/sites-available/https.conf
-RUN echo '    SSLCertificateFile /etc/ssl/certs/ssl-cert-snakeoil.pem' >> /etc/apache2/sites-available/https.conf
-RUN echo '    SSLCertificateKeyFile /etc/ssl/private/ssl-cert-snakeoil.key' >> /etc/apache2/sites-available/https.conf
-RUN echo '    <Directory /var/www/public>' >> /etc/apache2/sites-available/https.conf
-RUN echo '        Options -Indexes +FollowSymLinks' >> /etc/apache2/sites-available/https.conf
-RUN echo '        AllowOverride All' >> /etc/apache2/sites-available/https.conf
-RUN echo '        Require all granted' >> /etc/apache2/sites-available/https.conf
-RUN echo '    </Directory>' >> /etc/apache2/sites-available/https.conf
-RUN echo '    ErrorLog /proc/self/fd/2' >> /etc/apache2/sites-available/https.conf
-RUN echo '    CustomLog /proc/self/fd/1 combined' >> /etc/apache2/sites-available/https.conf
+RUN cat /tmp/site.conf >> /etc/apache2/sites-available/http.conf
 RUN echo '  </VirtualHost>' >> /etc/apache2/sites-available/https.conf
 RUN echo '</IfModule>' >> /etc/apache2/sites-available/https.conf
 RUN a2ensite https.conf
