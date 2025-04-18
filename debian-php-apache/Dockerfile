@@ -68,15 +68,7 @@ RUN echo '    php_admin_value session.cookie_httponly On">' >> /tmp/site.conf
 
 # Add HTTP site config
 RUN echo '<VirtualHost *:80>' > /etc/apache2/sites-available/http.conf
-RUN echo '    ServerAdmin webmaster@localhost' >> /etc/apache2/sites-available/http.conf
-RUN echo '    DocumentRoot /var/www/public' >> /etc/apache2/sites-available/http.conf
-RUN echo '    <Directory /var/www/public>' >> /etc/apache2/sites-available/http.conf
-RUN echo '        Options -Indexes +FollowSymLinks' >> /etc/apache2/sites-available/http.conf
-RUN echo '        AllowOverride All' >> /etc/apache2/sites-available/http.conf
-RUN echo '        Require all granted' >> /etc/apache2/sites-available/http.conf
-RUN echo '    </Directory>' >> /etc/apache2/sites-available/http.conf
-RUN echo '    ErrorLog /proc/self/fd/2' >> /etc/apache2/sites-available/http.conf
-RUN echo '    CustomLog /proc/self/fd/1 combined' >> /etc/apache2/sites-available/http.conf
+RUN cat /tmp/site.conf >> /etc/apache2/sites-available/http.conf
 RUN echo '</VirtualHost>' >> /etc/apache2/sites-available/http.conf
 RUN a2ensite http.conf
 
