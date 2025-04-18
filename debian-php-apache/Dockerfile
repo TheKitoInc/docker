@@ -37,6 +37,12 @@ RUN echo '    Require all denied' >> /etc/apache2/conf-available/security-protec
 RUN echo '</FilesMatch>' >> /etc/apache2/conf-available/security-protect-backup.conf
 RUN a2enconf security-protect-backup
 
+# Remove default apache2 site config
+RUN a2dissite 000-default.conf
+RUN a2dissite default-ssl.conf
+RUN rm -f /etc/apache2/sites-enabled/000-default.conf
+RUN rm -f /etc/apache2/sites-available/default-ssl.conf
+
 # Set permissions for apache2
 RUN chown -R www-data:www-data /var/www
 RUN chmod -R 755 /var/www
