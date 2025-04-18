@@ -19,10 +19,6 @@ RUN a2enmod headers
 # Disable apache2 modules
 RUN a2dismod autoindex -f
 
-# Enable apache2 site
-RUN a2ensite 000-default.conf
-RUN a2ensite default-ssl.conf
-
 # Harden Apache headers and info leakage
 RUN echo "ServerTokens Prod" >> /etc/apache2/conf-available/security.conf 
 RUN echo "ServerSignature Off" >> /etc/apache2/conf-available/security.conf 
