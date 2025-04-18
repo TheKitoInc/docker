@@ -11,13 +11,13 @@ RUN apt-get install -y apache2
 RUN apt-get install -y ssl-cert
 RUN apt-get install -y libapache2-mod-php
 
+# Disable apache2 modules
+RUN a2dismod autoindex -f
+
 # Enable apache2 modules
 RUN a2enmod rewrite
 RUN a2enmod ssl
 RUN a2enmod headers
-
-# Disable apache2 modules
-RUN a2dismod autoindex -f
 
 # Harden Apache headers and info leakage
 RUN echo "ServerTokens Prod" >> /etc/apache2/conf-available/security.conf 
