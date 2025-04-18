@@ -14,6 +14,12 @@ RUN apt-get install -y libapache2-mod-php
 # Disable apache2 modules
 RUN a2dismod autoindex -f
 
+# Remove default apache2 site config
+RUN a2dissite 000-default.conf
+RUN a2dissite default-ssl.conf
+RUN rm -f /etc/apache2/sites-enabled/000-default.conf
+RUN rm -f /etc/apache2/sites-available/default-ssl.conf
+
 # Enable apache2 modules
 RUN a2enmod rewrite
 RUN a2enmod ssl
@@ -36,12 +42,6 @@ RUN echo '<FilesMatch "\.(bak|swp|sql)$">' >> /etc/apache2/conf-available/securi
 RUN echo '    Require all denied' >> /etc/apache2/conf-available/security-protect-backup.conf
 RUN echo '</FilesMatch>' >> /etc/apache2/conf-available/security-protect-backup.conf
 RUN a2enconf security-protect-backup
-
-# Remove default apache2 site config
-RUN a2dissite 000-default.conf
-RUN a2dissite default-ssl.conf
-RUN rm -f /etc/apache2/sites-enabled/000-default.conf
-RUN rm -f /etc/apache2/sites-available/default-ssl.conf
 
 # Make common HTTP and HTTPS config
 RUN echo '    ServerAdmin webmaster@localhost' >> /tmp/site.conf
