@@ -26,6 +26,7 @@ RUN rm -f /etc/apache2/sites-available/default-ssl.conf
 
 # Create directories for apache2
 RUN mkdir -p /var/www/public
+RUN mkdir -p /var/www/tmp
 # Enable apache2 modules
 RUN a2enmod rewrite
 RUN a2enmod ssl
@@ -63,6 +64,8 @@ RUN echo '        Require all granted' >> /tmp/site.conf
 RUN echo '    </Directory>' >> /tmp/site.conf
 RUN echo '    ErrorLog /proc/self/fd/2' >> /tmp/site.conf
 RUN echo '    CustomLog /proc/self/fd/1 combined' >> /tmp/site.conf
+RUN echo '    php_admin_value upload_tmp_dir /var/www/tmp">' >> /tmp/site.conf
+RUN echo '    php_admin_value session.save_path /var/www/tmp">' >> /tmp/site.conf
 RUN echo '    php_admin_value error_log /proc/self/fd/2">' >> /tmp/site.conf
 RUN echo '    php_admin_value log_errors On">' >> /tmp/site.conf
 RUN echo '    php_admin_value error_reporting E_ALL">' >> /tmp/site.conf
