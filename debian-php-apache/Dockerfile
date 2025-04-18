@@ -7,7 +7,9 @@ ARG DEBIAN_FRONTEND=noninteractive
 RUN upgrade
 
 # Install apache2 and php runtime
-RUN apt-get install apache2 libapache2-mod-php -y
+RUN apt-get install -y apache2
+RUN apt-get install -y ssl-cert
+RUN apt-get install -y libapache2-mod-php
 
 # Enable apache2 modules
 RUN a2enmod rewrite
