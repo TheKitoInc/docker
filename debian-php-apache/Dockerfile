@@ -20,6 +20,8 @@ RUN a2dissite default-ssl.conf
 RUN rm -f /etc/apache2/sites-enabled/000-default.conf
 RUN rm -f /etc/apache2/sites-available/default-ssl.conf
 
+# Create directories for apache2
+RUN mkdir -p /var/www/public
 # Enable apache2 modules
 RUN a2enmod rewrite
 RUN a2enmod ssl
@@ -83,8 +85,6 @@ RUN a2ensite https.conf
 # Destroy temporary site config
 RUN rm -f /tmp/site.conf
 
-# Create directories for apache2
-RUN mkdir -p /var/www/public
 # Set permissions for apache2
 RUN chown -R www-data:www-data /var/www
 RUN chmod -R 755 /var/www
