@@ -43,6 +43,29 @@ RUN a2dissite default-ssl.conf
 RUN rm -f /etc/apache2/sites-enabled/000-default.conf
 RUN rm -f /etc/apache2/sites-available/default-ssl.conf
 
+# Make common HTTP and HTTPS config
+RUN echo '    ServerAdmin webmaster@localhost' >> /tmp/site.conf
+RUN echo '    DocumentRoot /var/www/public' >> /tmp/site.conf
+RUN echo '    <Directory /var/www/public>' >> /tmp/site.conf
+RUN echo '        Options -Indexes +FollowSymLinks' >> /tmp/site.conf
+RUN echo '        AllowOverride All' >> /tmp/site.conf
+RUN echo '        Require all granted' >> /tmp/site.conf
+RUN echo '    </Directory>' >> /tmp/site.conf
+RUN echo '    ErrorLog /proc/self/fd/2' >> /tmp/site.conf
+RUN echo '    CustomLog /proc/self/fd/1 combined' >> /tmp/site.conf
+RUN echo '    php_admin_value error_log /proc/self/fd/2">' >> /tmp/site.conf
+RUN echo '    php_admin_value log_errors On">' >> /tmp/site.conf
+RUN echo '    php_admin_value error_reporting E_ALL">' >> /tmp/site.conf
+RUN echo '    php_admin_value display_errors Off">' >> /tmp/site.conf
+RUN echo '    php_admin_value display_startup_errors Off">' >> /tmp/site.conf
+RUN echo '    php_admin_value max_execution_time 30">' >> /tmp/site.conf
+RUN echo '    php_admin_value max_input_time 60">' >> /tmp/site.conf
+RUN echo '    php_admin_value memory_limit 128M">' >> /tmp/site.conf
+RUN echo '    php_admin_value post_max_size 8M">' >> /tmp/site.conf
+RUN echo '    php_admin_value upload_max_filesize 2M">' >> /tmp/site.conf
+RUN echo '    php_admin_value session.gc_maxlifetime 1440">' >> /tmp/site.conf
+RUN echo '    php_admin_value session.cookie_httponly On">' >> /tmp/site.conf
+
 # Add HTTP site config
 RUN echo '<VirtualHost *:80>' > /etc/apache2/sites-available/http.conf
 RUN echo '    ServerAdmin webmaster@localhost' >> /etc/apache2/sites-available/http.conf
