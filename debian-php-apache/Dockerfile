@@ -76,7 +76,7 @@ RUN a2ensite http.conf
 
 # Add HTTPS site config
 RUN echo '<IfModule mod_ssl.c>' > /etc/apache2/sites-available/https.conf
-RUN echo '  <VirtualHost _default_:443>' >> /etc/apache2/sites-available/https.conf
+RUN echo '  <VirtualHost *:443>' >> /etc/apache2/sites-available/https.conf
 RUN echo '    SSLEngine on' >> /etc/apache2/sites-available/https.conf
 RUN echo '    SSLCertificateFile /etc/ssl/certs/ssl-cert-snakeoil.pem' >> /etc/apache2/sites-available/https.conf
 RUN echo '    SSLCertificateKeyFile /etc/ssl/private/ssl-cert-snakeoil.key' >> /etc/apache2/sites-available/https.conf
