@@ -30,6 +30,10 @@ RUN a2enmod rewrite
 RUN a2enmod ssl
 RUN a2enmod headers
 
+# Set server name to avoid warnings
+RUN echo "ServerName localhost" > /etc/apache2/conf-available/servername.conf
+RUN a2enconf servername
+
 # Harden Apache headers and info leakage
 RUN echo "ServerTokens Prod" >> /etc/apache2/conf-available/security.conf 
 RUN echo "ServerSignature Off" >> /etc/apache2/conf-available/security.conf 
