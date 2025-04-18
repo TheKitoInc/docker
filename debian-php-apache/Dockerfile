@@ -8,6 +8,7 @@ RUN upgrade
 
 # Install snakeoil SSL certs
 RUN apt-get install -y ssl-cert
+RUN make-ssl-cert generate-default-snakeoil --force-overwrite
 
 # Install apache2 and php runtime
 RUN apt-get install -y apache2
