@@ -94,5 +94,9 @@ RUN chmod -R 755 /var/www
 RUN find /var/www -type d -exec chmod 770 {} \;
 RUN find /var/www -type f -exec chmod 660 {} \;
 
+# Expose HTTP and HTTPS ports
+EXPOSE 80
+EXPOSE 443
+
 # Run apache2 in foreground
 CMD ["apache2ctl", "-D", "FOREGROUND"]
