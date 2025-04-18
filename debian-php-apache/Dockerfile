@@ -72,6 +72,14 @@ RUN echo '    php_admin_value display_errors off"' >> /tmp/site.conf
 RUN echo '    php_admin_value display_startup_errors off"' >> /tmp/site.conf
 RUN echo '    php_admin_value open_basedir /var/www' >> /tmp/site.conf
 RUN echo '    php_admin_value upload_tmp_dir /var/www/tmp' >> /tmp/site.conf
+RUN echo '    php_admin_value session.save_path /var/www/tmp' >> /tmp/site.conf
+RUN echo '    php_admin_value max_execution_time 30' >> /tmp/site.conf
+RUN echo '    php_admin_value max_input_time 60' >> /tmp/site.conf
+RUN echo '    php_admin_value memory_limit 128M' >> /tmp/site.conf
+RUN echo '    php_admin_value post_max_size 8M' >> /tmp/site.conf
+RUN echo '    php_admin_value upload_max_filesize 2M' >> /tmp/site.conf
+RUN echo '    php_admin_value session.gc_maxlifetime 1440' >> /tmp/site.conf
+RUN echo '    php_admin_value session.cookie_httponly on' >> /tmp/site.conf
 
 # Add HTTP site config
 RUN echo '<VirtualHost *:80>' > /etc/apache2/sites-available/http.conf
