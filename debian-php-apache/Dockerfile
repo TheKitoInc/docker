@@ -6,6 +6,9 @@ ARG DEBIAN_FRONTEND=noninteractive
 # Run upgrade
 RUN upgrade
 
+# Install snakeoil SSL certs
+RUN apt-get install -y ssl-cert
+
 # Install apache2 and php runtime
 RUN apt-get install -y apache2
 RUN apt-get install -y ssl-cert
