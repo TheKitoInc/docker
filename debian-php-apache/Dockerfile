@@ -80,6 +80,9 @@ RUN echo '  </VirtualHost>' >> /etc/apache2/sites-available/https.conf
 RUN echo '</IfModule>' >> /etc/apache2/sites-available/https.conf
 RUN a2ensite https.conf
 
+# Destroy temporary site config
+RUN rm -f /tmp/site.conf
+
 # Create directories for apache2
 RUN mkdir -p /var/www/public
 # Set permissions for apache2
