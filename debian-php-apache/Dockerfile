@@ -25,8 +25,8 @@ RUN rm -f /etc/apache2/sites-enabled/000-default.conf
 RUN rm -f /etc/apache2/sites-available/default-ssl.conf
 
 # Create directories for apache2
-RUN mkdir -p /var/www/public
-RUN mkdir -p /var/www/tmp
+#RUN mkdir -p /var/www/public
+#RUN mkdir -p /var/www/tmp
 
 # Enable apache2 modules
 RUN a2enmod rewrite
