@@ -19,5 +19,6 @@ RUN apt-get install php-redis -y
 RUN apt-get install php-xmlrpc -y
 RUN apt-get install php-soap -y
 RUN apt-get install php-ldap -y
+RUN apt-get install php-imap -y
 RUN apt-get install php-gd -y
 RUN apt-get install php-imagemagick -y
