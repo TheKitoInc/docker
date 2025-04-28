@@ -23,4 +23,4 @@ RUN apt-get install php-imap -y
 RUN apt-get install php-memcached -y
 RUN apt-get install php-pear -y
 RUN apt-get install php-gd -y
-RUN apt-get install php-imagemagick -y
+RUN apt-get install php-imagick -y
