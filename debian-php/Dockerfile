@@ -15,5 +15,6 @@ RUN apt-get install php-mysql -y
 RUN apt-get install php-xml -y
 RUN apt-get install php-zip -y
 RUN apt-get install php-bcmath -y
+RUN apt-get install php-redis -y
 RUN apt-get install php-gd -y
 RUN apt-get install php-imagemagick -y
