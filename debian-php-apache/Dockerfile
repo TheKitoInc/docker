@@ -65,7 +65,7 @@ RUN echo '        Require all granted' >> /tmp/site.conf
 RUN echo '    </Directory>' >> /tmp/site.conf
 RUN echo '    ErrorLog /proc/self/fd/2' >> /tmp/site.conf
 RUN echo '    CustomLog /proc/self/fd/1 combined' >> /tmp/site.conf
-RUN echo '    php_admin_value error_log /proc/self/fd/2' >> /tmp/site.conf
+RUN echo '    php_admin_value error_log /dev/stderr' >> /tmp/site.conf
 RUN echo '    php_admin_value log_errors on' >> /tmp/site.conf
 RUN echo '    php_admin_value error_reporting E_ALL' >> /tmp/site.conf
 RUN echo '    php_admin_value display_errors off"' >> /tmp/site.conf
