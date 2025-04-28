@@ -8,3 +8,4 @@ RUN upgrade
 
 # Install php runtime
 RUN apt-get install php-cli -y
+RUN apt-get install php-curl -y
