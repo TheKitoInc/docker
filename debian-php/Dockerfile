@@ -10,5 +10,6 @@ RUN upgrade
 RUN apt-get install php-cli -y
 RUN apt-get install php-curl -y
 RUN apt-get install php-intl -y
+RUN apt-get install php-mbstring -y
 RUN apt-get install php-gd -y
 RUN apt-get install php-imagemagick -y
