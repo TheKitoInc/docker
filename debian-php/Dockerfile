@@ -9,3 +9,5 @@ RUN upgrade
 # Install php runtime
 RUN apt-get install php-cli -y
 RUN apt-get install php-curl -y
+RUN apt-get install php-gd -y
+RUN apt-get install php-imagemagick -y
