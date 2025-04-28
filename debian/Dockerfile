@@ -31,3 +31,7 @@ RUN chmod +x /usr/local/bin/upgrade
 
 # Run upgrade
 RUN upgrade
+
+# Install ssl certificates
+RUN apt-get install -y ca-certificates
+RUN update-ca-certificates
