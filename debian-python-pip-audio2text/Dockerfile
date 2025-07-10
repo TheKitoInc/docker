@@ -14,6 +14,9 @@ RUN apt-get install ffmpeg libsndfile1 -y
 WORKDIR /app
 COPY . .
 
+# Install git
+RUN apt-get install git -y
+
 # Install the required Python packages
 RUN pip install --break-system-packages --no-cache-dir -r requirements.txt
 
