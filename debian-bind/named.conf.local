@@ -1,0 +1,4 @@
+zone "docker.local" {
+    type master;
+    file "/etc/bind/db.docker.local";
+};
