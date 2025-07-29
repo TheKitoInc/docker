@@ -61,6 +61,7 @@ jobs:
         run: |
           for dir in ${{ steps.detect.outputs.changed_dirs }}; do
             echo "📤 Pushing ${{ vars.DOCKERHUB_USERNAME }}/$dir"
+            docker tag ${{ vars.DOCKERHUB_USERNAME }}/$dir:latest ${{ vars.DOCKERHUB_USERNAME }}/$dir:${{ github.sha }}
             docker push ${{ vars.DOCKERHUB_USERNAME }}/$dir:${{ github.sha }}
             docker push ${{ vars.DOCKERHUB_USERNAME }}/$dir:latest
           done
