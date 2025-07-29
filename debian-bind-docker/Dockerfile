@@ -9,6 +9,10 @@ RUN chmod +x /build.sh && \
 # Copy all to the container
 COPY ./root /
 
+# Expose ports
+EXPOSE 53/udp
+EXPOSE 53/tcp
+
 # Healthcheck
 HEALTHCHECK --interval=30s --timeout=10s --start-period=5s \
   CMD dig @localhost
