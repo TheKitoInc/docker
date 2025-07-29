@@ -9,6 +9,9 @@ cat /dev/null > /etc/apt/sources.list
 echo "deb http://deb.debian.org/debian stable main" > /etc/apt/sources.list
 echo "deb http://security.debian.org/debian-security stable-security/updates main" >> /etc/apt/sources.list
 
+# Set environment variables
+export DEBIAN_FRONTEND=noninteractive
+
 # Upgrade the system
 apt-get update
 apt-get upgrade -yd
