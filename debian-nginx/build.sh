@@ -46,3 +46,7 @@ rm -rf /var/cache/debconf/*-old
 find /var/lib/dpkg/info -type f -name '*.old' -delete
 find /var/lib/dpkg/info -type f -name '*.bak' -delete
 find /var/lib/dpkg/info -type f -name '*.dpkg-*' -delete
+
+# Map STDIO/ERRIO
+ln -sf /dev/stdout /var/log/nginx/access.log
+ln -sf /dev/stderr /var/log/nginx/error.log
