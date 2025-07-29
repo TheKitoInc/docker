@@ -27,7 +27,7 @@ update-ca-certificates
 apt-get install -y --no-install-recommends nginx
 
 # Install snakeoil
-RUN apt-get install -y --no-install-recommends ssl-cert
+apt-get install -y --no-install-recommends ssl-cert
 
 # Install curl for health checks
 apt-get install -y --no-install-recommends curl
