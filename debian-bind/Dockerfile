@@ -17,5 +17,8 @@ EXPOSE 53/tcp
 HEALTHCHECK --interval=30s --timeout=10s --start-period=5s \
   CMD dig @localhost
 
+# Set executable permissions for the init script
+RUN chmod +x /init.sh
+
 # Initialize the container
 ENTRYPOINT [ "/init.sh" ]

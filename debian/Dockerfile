@@ -9,5 +9,8 @@ RUN chmod +x /build.sh && \
 # Copy all to the container
 COPY ./root /
 
+# Set executable permissions for the init script
+RUN chmod +x /init.sh
+
 # Initialize the container
 ENTRYPOINT [ "/init.sh" ]
